@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../auth/AuthContext";
 
 export const LoginPage = () => {
+
+  const { login  } = useContext(AuthContext);
 
   const [form, setForm] = useState({
     email: 'test1@test.com',
@@ -43,8 +46,8 @@ export const LoginPage = () => {
     } else {
       localStorage.removeItem('email');
     }
-
-    // todo: llamar al backend para guardar la informacion
+    const { email, password} = form;
+    login(email, password);
   }
 
   return (
