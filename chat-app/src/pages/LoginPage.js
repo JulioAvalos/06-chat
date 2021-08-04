@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
@@ -8,6 +8,17 @@ export const LoginPage = () => {
     password: '123456',
     rememberme: false
   });
+
+  useEffect(() => {
+    const email = localStorage.getItem('email');
+    if(email) {
+      setForm({
+        ...form,
+        email,
+        rememberme: true
+      });
+    }
+  }, []);
 
   const onChange = ({target}) => {
     const {name, value} = target;
@@ -26,7 +37,14 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
+
+    if(form.rememberme) {
+      localStorage.setItem('email', form.email);
+    } else {
+      localStorage.removeItem('email');
+    }
+
+    // todo: llamar al backend para guardar la informacion
   }
 
   return (
