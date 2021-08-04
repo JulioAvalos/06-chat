@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const validatJWT = (req, res, next) => {
+const validarJWT = (req, res, next) => {
 
     try {
 
@@ -28,5 +28,5 @@ const validatJWT = (req, res, next) => {
 }
 
 module.exports = {
-    validatJWT
+    validarJWT
 }

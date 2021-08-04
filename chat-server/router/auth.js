@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 // Controladores
 const { crearUsuario, login, renewToken } = require("../controllers/auth");
 const { validarCampos } = require("../middlewares/validar-campos");
-const { validatJWT } = require("../middlewares/validar-jwt");
+const { validarJWT } = require("../middlewares/validar-jwt");
 
 const router = Router();
 
@@ -27,6 +27,6 @@ router.post("/", [
 ], login);
 
 // Revalidar token
-router.get("/renew", validatJWT, renewToken);
+router.get("/renew", validarJWT, renewToken);
 
 module.exports = router;
