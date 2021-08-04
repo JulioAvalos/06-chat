@@ -49,13 +49,17 @@ export const LoginPage = () => {
     } else {
       localStorage.removeItem('email');
     }
-    
+
     const { email, password} = form;
     const ok = await login(email, password);
 
     if(!ok) {
       Swal.fire('Error', 'Verifique el usuario y clave', 'error');
     }
+  }
+
+  const todoOk = () => {
+    return (form.email.length > 0 && form.password.length > 0)
   }
 
   return (
@@ -114,7 +118,13 @@ export const LoginPage = () => {
       </div>
 
       <div className="container-login100-form-btn m-t-17">
-        <button className="login100-form-btn">Ingresar</button>
+        <button 
+          className="login100-form-btn"
+          type="submit"
+          disabled={!todoOk()}
+        >
+            Ingresar
+          </button>
       </div>
     </form>
   );
