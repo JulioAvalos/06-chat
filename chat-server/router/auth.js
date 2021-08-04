@@ -18,12 +18,6 @@ router.post("/new", [
   validarCampos
 ], crearUsuario);
 
-/* 
-    nombre: string
-    password: string,
-    email: isEmail
-*/
-
 // Realizar login
 router.post("/", [
   check('email', 'El email es obligatorio').isEmail(),
