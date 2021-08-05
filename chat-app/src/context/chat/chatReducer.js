@@ -1,7 +1,5 @@
 import { types } from "../../types/types";
 
-
-
 export const chatReducer = (state, action) => {
 
   switch (action.type) {
@@ -14,8 +12,4 @@ export const chatReducer = (state, action) => {
       return state;
   }
 };
-
-
-
-
 
