@@ -109,8 +109,7 @@ export const LoginPage = () => {
           <label className="label-checkbox100">Recordarme</label>
         </div>
 
-        <div className="col text-right">
-          
+        <div className="col text-right">   
           <Link to="/auth/register" className="txt1">
             Nueva cuenta?
           </Link>

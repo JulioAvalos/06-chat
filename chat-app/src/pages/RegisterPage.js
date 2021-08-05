@@ -1,8 +1,48 @@
+import { useContext, useState } from 'react';
+
+import Swal from 'sweetalert2';
+
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthContext';
 
 export const RegisterPage = () => {
+
+  const { register } = useContext(AuthContext);
+
+  const [form, setForm] = useState({
+    name: 'Diego Figeuroa',
+    email: 'test6@test.com',
+    password: '12345'
+  });
+
+  const onChange = ({target}) => {
+    const {name, value} = target;
+    setForm({
+      ...form,
+      [name]: value
+    });
+  }
+
+  const onSubmit = async(event) => {
+    event.preventDefault();
+    
+    const { name, email, password } = form; 
+    const msg = await register(name, email, password);
+
+    if(msg !== true && msg) {
+      Swal.fire('Error', msg, 'error');
+    }
+  }
+
+  const todoOk = () => {
+    return (form.name.length > 0 && form.email.length > 0 && form.password.length > 0)
+  }
+
   return (
-    <form className="login100-form validate-form flex-sb flex-w">
+    <form 
+      className="login100-form validate-form flex-sb flex-w"
+      onSubmit={onSubmit}
+    >
       <span className="login100-form-title mb-3">Chat - Registro</span>
 
       <div className="wrap-input100 validate-input mb-3">
@@ -11,6 +51,8 @@ export const RegisterPage = () => {
           type="text"
           name="name"
           placeholder="Nombre"
+          value={form.name}
+          onChange={onChange}
         />
         <span className="focus-input100"></span>
       </div>
@@ -21,6 +63,8 @@ export const RegisterPage = () => {
           type="email"
           name="email"
           placeholder="Email"
+          value={form.email}
+          onChange={onChange}
         />
         <span className="focus-input100"></span>
       </div>
@@ -31,6 +75,8 @@ export const RegisterPage = () => {
           type="password"
           name="password"
           placeholder="Password"
+          value={form.password}
+          onChange={onChange}
         />
         <span className="focus-input100"></span>
       </div>
@@ -44,7 +90,13 @@ export const RegisterPage = () => {
       </div>
 
       <div className="container-login100-form-btn m-t-17">
-        <button className="login100-form-btn">Crear cuenta</button>
+        <button 
+          type="submit"
+          className="login100-form-btn"
+          disabled={!todoOk()}
+        >
+          Crear cuenta
+        </button>
       </div>
     </form>
   );
