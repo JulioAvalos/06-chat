@@ -1,7 +1,8 @@
 
 export const types = {
-    usuariosCargados: '[CHAT] Usuarios cargados',
+    usuariosCargados: '[Chat] Usuarios cargados',
     activarChat: '[Chat] Activar Chat',
     nuevoMensaje: '[Chat] Nuevo Mensaje',
-    cargarMensajes: '[Chat] Cargar Mensajes'
+    cargarMensajes: '[Chat] Cargar Mensajes',
+    cerrarSesion: '[Chat] Borrar Chat'
 }
