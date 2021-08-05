@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ChatContext } from "../context/chat/ChatContext";
 import { fetchConToken } from "../helpers/fetch";
+import { scrollToBottom } from "../helpers/scrollToBottom";
 import { types } from "../types/types";
 
 export const SidebarChatItem = ({ usuario }) => {
@@ -20,7 +21,8 @@ export const SidebarChatItem = ({ usuario }) => {
       payload: resp.mensajes
     });
 
-    //todo : mover el scroll del chat
+    //mover el scroll del chat
+    scrollToBottom('mensajes');
 
   };
 
